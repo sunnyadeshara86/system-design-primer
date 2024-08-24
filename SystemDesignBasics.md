@@ -25,3 +25,20 @@ Each component in a distributed software system is responsible for a specific ta
 Distributed software systems are often used in large-scale applications where scalability, availability, and fault tolerance are critical requirements. Examples of distributed software systems include cloud computing platforms, peer-to-peer networks, distributed databases, and content delivery networks (CDNs).
 
 Designing, developing, and maintaining a distributed software system can be challenging because it requires careful consideration of network communication, data consistency, availability, fault tolerance, and security.
+
+### Understanding system design
+
+System design is the process of defining the architecture, components, modules, interfaces, and interactions of a software system to meet its functional and non-functional requirements. It involves transforming a set of requirements into a blueprint or a plan that describes how the software system will be structured, implemented, and maintained.
+
+The goal of software system design is to create a design that is easy to understand, maintain, and extend and that meets the performance, scalability, reliability, and security requirements of the system. The design should also be flexible enough to accommodate changes in the requirements or the environment over time.
+
+The software system design process typically involves the following steps:
+
+* Requirements analysis: Understanding and defining the functional and non-functional requirements of the system. This step also calls for a deeper look into the read-and-write patterns and then designing the system to take advantage of these patterns.
+* High-level architecture design: Defining the overall structure of the system (see Figure 1.2), including its components, modules, and interfaces.
+* Detailed design: Defining the internal structure and behavior of each component and module. This also involves the core algorithms of each component and mechanisms of interactions between components.
+* User interface design: Designing the user interface of the system that would interact with the backend services via APIs. This is to be done at a very high level.
+* API design: Defining proper APIs, which would enable the user interface or the frontend to interact with the backend services.
+* Database design: Designing the data structures and storage mechanisms used by the system. The database could be simple file storage to a relational database such as MySQL or a NoSQL database such as HBase or Cassandra.
+
+The output of the software system design process is a set of design documents, such as architectural diagrams and detailed design documents, enlisting and defining the APIs and user interface prototypes, which serve as a blueprint for implementing the software system.
