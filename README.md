@@ -60,4 +60,5 @@ This guide is for a wide range of readers in the software engineering field. The
     * Design A Stock Exchange
     * Design A System like Stack Overflow
     * Design A System like BookMyShow
-  * System Design Cheat Sheet
+* System Design Cheat Sheet
+* Appendix
