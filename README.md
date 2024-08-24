@@ -60,5 +60,6 @@ This guide is for a wide range of readers in the software engineering field. The
     * Design A Stock Exchange
     * Design A System like Stack Overflow
     * Design A System like BookMyShow
+    * Design A Ride Sharing System like Uber/Lyft
 * System Design Cheat Sheet
 * Appendix
