@@ -164,7 +164,13 @@ How can We avoid the corruption?
 
 Conclusion: This option does not seem to be ideal to be deployed in production.
 
-#### Option B - MD5 Hash
+#### Option B - Pre-generate a pool of random strings and use them
+
+Instead of generating short URL from long URL in Option 1, A pool of short URL can be generated and stored in a database and requests for shortening URLs can be catered by picking a pre-generated random string and marking it as used so that the same value is not used again.
+
+Conclusion: This option looks much more robust than the previous options and doesn’t have any major drawbacks.
+
+#### Option C - MD5 Hash
 
 Given a long URL, generate its MD5 hash. The MD5 hash is 128 bits, and we need to have 7 bits with 62 base, which translates to 42 bits (base 2), since 62^7 ~= 2^42. We can take 42 bits from the 128-bit MD5 hash and from that, we can create short_url with 7 base 62 characters.
 
@@ -175,7 +181,7 @@ Let's understand advantages and disadvantages with this approach:
 
 Conclusion: This option does not seem to be ideal to be deployed in production as well.
 
-#### Option C – counters approach
+#### Option D – counters approach
 
 What if we generate a monotonically increasing counter incrementing the previous number by one? Here, a single host keeps generating this unique counter.
 
@@ -189,7 +195,7 @@ Problems with this approach:
 
 Conclusion: This option does not seem to be ideal to be deployed in production as well.
 
-#### Option D – distributed counters approach
+#### Option E – distributed counters approach
 
 The idea is to divide the 3.5 T sequence numbers into multiple ranges of 'k' size. Lets say, k is 1 million, thus, for 3.5T, we will have 3.5M such ranges, because each range is 1M itself.
 
