@@ -277,7 +277,7 @@ If we look at the main data we are storing in this system, the design problem is
 
 ### High-level solution architecture (Option E)
 
-[![Hight Level Diagram](https://github.com/sunnyadeshara86/system-design-primer/blob/master/Diagrams/URLShortnerService_HighLevel_OptionE.jpg)]
+![Hight Level Diagram](https://github.com/sunnyadeshara86/system-design-primer/blob/master/Diagrams/URLShortnerService_HighLevel_OptionE.jpg)
 
 
 
