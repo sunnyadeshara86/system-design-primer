@@ -98,7 +98,42 @@ Below is a list of non-functional requirements:
 
 ### API Design
 
+The following APIs would be needed to support the core functional requirements of shortened URLs:
+* POST/shorturl: Creates a new short URL given a long URL
+  * Request body: The long URL
+  * Response: The short URL
+* GET/shorturls/{shorturl}: Returns the long URL corresponding to the short URL
+  *  Response: The long URL
+  * String getLongUrl(shortUrl)
+
 ### Estimates and Calculations
+
+For calculations, let’s start by asking some questions:
+* What characters can we use for short URLs? Our options are as follows:
+  * a-z, A-Z, 0-9. So, it’s 62 characters.
+  * If you want to use more characters, -, ., _, and ~, so, there’s a total of 66 characters.
+  * Let’s stick to just 62 characters.
+* What’s the scale we are operating at? Let’s make some assumptions here:
+  * We have 1 B users.
+  * About 10% create short URLs (100 M users).
+  * Each user creates 1 URL per day, so 100 M URLs per day.
+  * We store these URLs for 10 years. So, 100 M * 1 * 365 * 10 = 365 B URLs.
+* How many characters would we have in the short URL? Now, to have 365 B unique URLs, how many characters do we need to create unique URLs? Let’s see:
+  * The number of URLs if we use 6 characters is 62^6 = 56 B URLs, but our requirement is to have 365 B URLs. So, we need to use more characters.
+  * If we use 7 characters, we have 62^7 = 3.5 T.
+* How much storage do we need? Let’s see:
+  * We have 365 B URLs. These are the columns we need to store for this system to work:
+    * short URL (20 bytes)
+    * long URL (1,000 bytes)
+    * created_at (10 bytes)
+    * updated_al (10 bytes)
+    * created_by (20 bytes)
+  * So, overall, the number of bytes would be 1,060. Let’s round it off to 1,500 bytes.
+  * So, the data we would store for each URL is 365 B* 1500 bytes ~= 500 TB.
+  * If we use a replication factor of 3, then we would need 1.5 PB of storage.
+* What’s the read and write RPS? Let’s see:
+  * Write RPS: 100 M requests per day = 100 M requests per day/(86,400 seconds/day) =~ 100 M/ 100,000 (approximating 86,400 to 100,000) requests per second = 1000 RPS
+  * Read RPS: 100 x write RPS = 100 k RPS
 
 #### Options of characters that We can use for short URLs are as follows:
 
@@ -235,4 +270,14 @@ This design looks good, but there are a few open questions:
 * Isn’t Range Server a single point of failure here? Let’s see:Yes, it appears so, but since the Range Server doesn’t have a lot of reads and writes, we can use a highly available, replicated, fault-tolerant service such as ZooKeeper.
 
 Conclusion: This option looks much more robust than the previous options and doesn’t have any major drawbacks.
+
+### Database Selection
+
+If we look at the main data we are storing in this system, the design problem is the short_url -> long_url mapping. This is a key-value pair and an intuitive choice for storing this kind of mapping is Redis. Redis is a fast, highly scalable, durable, and fault-tolerant database.
+
+### High-level solution architecture (Option E)
+
+<image>
+
+
 
