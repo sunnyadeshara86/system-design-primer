@@ -13,6 +13,7 @@ This guide is for a wide range of readers in the software engineering field. The
 * Attributes of Distributed Systems
 * Theorms and Data Structures of Distributed Systems
 * Building Blocks of Distributed Systems
+* Domain Driven Design
 * Designing and Implementing System Components
     * Databases and Storage
     * Distributed Cache
