@@ -10,6 +10,7 @@ This guide is for a wide range of readers in the software engineering field. The
 ## The whole guide has been organized in various sections described as below
 
 * System Design Basics
+* Domain Driven Design
 * Attributes of Distributed Systems
 * Theorms and Data Structures of Distributed Systems
 * Building Blocks of Distributed Systems
